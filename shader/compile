@@ -1,0 +1,6 @@
+#! /bin/sh
+#
+rm -f ${1}.o
+gcc -c -I/usr/X11R6/include -I. ${1}.c
+rm -f ${1}
+gcc -o ${1} ${1}.o  -L. -L/usr/X11R6/lib -L/usr/X11R6/lib/Xm -lTab -lXp -lXm -lXt -lSM -lICE -lXext -lXpm -lX11 -lm -Wl,-rpath,/usr/X11R6/lib

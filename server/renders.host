@@ -1,0 +1,14 @@
+#
+# renders.host	This file describes the available render programs in
+#		this host. This information is used by the renderd
+#		daemon to inform the RenderManager about the available
+#		render packages.
+#
+# The format of the information in this file is:
+# <Package Name>	<Full Render Software Name>	<Main Path>
+# with no spaces (all spaces should be replaced by underscores "_")
+
+BMRT_2.3.5c	Blue_Moon_Rendering_Tools_2.3.5_Rev.C	/usr/local/bmrt
+PRMan_3.6	Pixar_PhotoRealistic_RenderMan_3.6	/usr/local/prman
+
+# End of renders.host

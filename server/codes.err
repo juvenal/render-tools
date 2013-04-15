@@ -1,0 +1,26 @@
+Error Codes
+
+Process/System errors
+  1001: Cannot ignore signal
+  1002: Fork failed
+  1003: System call failed
+
+Shared Memory errors
+  2001: Create shared memory failed
+  2002: Attaching shared memory failed
+
+Communications errors
+  3001: Socket creation failed
+  3002: Bind failed
+  3003: Listen failed
+  3004: Accept connection failed
+  3005: gethostname failed
+  3006: Unknown host
+  3007: Connect failed
+  3008: Send failed
+
+File operation errors
+  4001: Failed to open file
+  4002: Failed to read data from file
+  4003: Failed to reposition pointer of file
+  4004: Failed to close file

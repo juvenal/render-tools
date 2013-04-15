@@ -1,0 +1,4 @@
+rman-mgr	14201/tcp
+rman-srv	14202/tcp
+rman-mgr	14201/udp
+rman-srv	14202/udp

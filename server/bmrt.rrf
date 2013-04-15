@@ -1,0 +1,188 @@
+##RenderMan Resource-1.0
+##Renderer BMRT 2.3.5c
+##RenderManCapabilitiesAvailable
+Solid Modeling
+Trim Curves
+Motion Blur
+Depth of Field
+Programmable Shading
+Displacements
+Texture Mapping
+Environment Mapping
+Bump Mapping
+Volume Shading
+Ray Tracing
+Radiosity
+Area Light Sources
+##RendererSpecificAttributes
+Declare "averagecolor" "uniform color"
+Declare "specularcolor" "uniform color"
+Declare "emissioncolor" "uniform color"
+Declare "pathsize" "uniform integer"
+Declare "elemsize" "uniform integer"
+Declare "minsize" "uniform integer"
+Declare "zonal" "string"
+Declare "truedisplacement" "uniform integer"
+Declare "casts_shadows" "string"
+Declare "patch_level" "uniform integer"
+Declare "shadows" "string"
+Attribute "radiosity" "averagecolor" [0 0 0]
+Attribute "radiosity" "specularcolor" [0 0 0]
+Attribute "radiosity" "emissioncolor" [0 0 0]
+Attribute "radiosity" "patchsize" [12] "elemsize" [12] "minsize" [4]
+Attribute "radiosity" "zonal" "fully_zonal"
+Attribute "render" "truedisplacement" [1]
+Attribute "render" "casts_shadows" "shade"
+Attribute "render" "patch_level" [64]
+Attribute "light" "shadows" "on"
+##RendererSpecificOptions
+Declare "minsamples" "uniform integer"
+Declare "maxsamples" "uniform integer"
+Declare "max_raylevel" "uniform integer"
+Declare "minshadowbias" "uniform float"
+Declare "prmanspecular" "uniform integer"
+Declare "steps" "uniform integer"
+Declare "minpatchsamples" "uniform integer"
+Declare "texture" "string"
+Declare "shader" "string"
+Declare "include" "string"
+Declare "verbosity" "string"
+Option "render" "minsamples" [8] "maxsamples" [64]
+Option "render" "max_raylevel" [5]
+Option "render" "minshadowbias" [0.01]
+Option "render" "prmanspecular" [1]
+Option "radiosity" "steps" [0]
+Option "radiosity" "minpatchsamples" [4]
+Option "searchpath" "texture" "&:.:~/textures:/usr/local/bmrt/textures"
+Option "searchpath" "shader" "&:.:~/shaders:/usr/local/bmrt/shaders"
+Option "searchpath" "include" "&:.:~/geometry:/usr/local/bmrt/geometry"
+Option "runtime" "verbosity" "normal"
+##ShaderResources
+light ambientlight ( float intensity = 1;
+                     color lightcolor = 1; )
+light arealight ( float intensity = 1;
+                  color lightcolor = 1; )
+imager background ( color bgcolor = 0 )
+imager clamptoalpha ()
+surface constant ()
+light defaultlight ()
+surface defaultsurface ( float Kd=.8, Ka=.2 )
+displacement dented ( float Km = 1, power = 3, frequency = 1; )
+volume depthcue ( float mindistance = 0, maxdistance = 1;
+                  color background = 0; )
+light distantlight ( float intensity = 1;
+                     color lightcolor = 1;
+                     point from = point "shader" (0,0,0);
+                     point to = point "shader" (0,0,1); )
+light finite ( float intensity = 1 ;
+               color lightcolor = 1 ;
+               vector location = (0,0,0); )
+volume fog ( float distance = 1;
+             color background = 0; )
+surface funkyglass ( float Ka = .2;
+                     float Kd = .2;
+                     float Ks = 1;
+                     floact roughness = .08;
+                     color specularcolor = 1; )
+surface glass ( float Ka = 0.2, Kd = 0, Ks = 0.5;
+                float Kr = 1, Kt = 1, roughness = 0.05, blur = 0, eta = 1.5;
+                color specularcolor = 1, transmitcolor = 1;
+                float samples = 1; )
+surface gmarbtile_polish ( float Ka = 0.5, 
+                                 Kd = 0.4,
+                                 Ks = 0.2,
+                                 Kr = 0.2,
+                                 roughness = 0.05;
+                           color specularcolor = 1;
+                           float tWtsccle = 1;
+                           color darkcolor = color(0.018 0.128 0.004);
+                           color lightcolor = color(0.068 0.188 0.02);
+                           color veincolor = color(0.478 0.578 0.03);
+                           color groovecolor = color(.028.028.02);
+                           float veinfreq = 1;
+                           float sharpness = 25;
+                           float tilesize = 1;
+                           float groovewidth = 0.015; )
+surface matte ( float Ka = 1;
+                float Kd = 1; )
+surface metal ( float Ka = 1;
+                float Ks = 1;
+                float roughness = .1; )
+volume noisysmoke ( float density = 60;
+                    float integstart = 0, integend = 100;
+                    float stepsize = 0.1;
+                    float debug = 0;
+                    float use_lighting = 1;
+                    float use_noise = 1;
+                    color scatter = 1;   /* for sky, try (1, 2.25, 21) */
+                    float octaves = 3, freq = 1, smokevary = 1;
+                    float lightscale = 15; )
+surface null ()
+surface paintedplastic ( float Ka = 1, Kd = .5, Ks = .5, roughness = .1;
+                         color specularcolor = 1;
+                         string texturename = ""; )
+surface plank ( float Ka = 1, Kd = 0.75, Ks = .15, roughness = .05;
+                color specularcolor = 1;
+                float ringscale = 15, grainscale = 60;
+                float txtscale = 1;
+                color lightwood = color (0.57, 0.292, 0.125);
+                color darkwood  = color (0.275, 0.15, 0.06);
+                color groovecolor  = color (.05, .04, .015);
+                float plankwidth = .05, planklength = .75, groovewidth = 0.001;
+                float plankvary = 0.8;
+                float grainy = 1, wavy = 0.08; )
+surface plastic ( float Ka = 1;
+                  float Kd = .5;
+                  float Ks = .5;
+                  float roughness = .1;
+                  color specularcolor = 1; )
+light pointlight ( float intensity = 1;
+                   color lightcolor = 1;
+                   point from = point "shader" (0,0,0); )
+surface potwood( float   ringscale       = 10;
+                 color   lightwood       = color (0.3, 0.12, 0.03),
+                         darkwood        = color (0.05, 0.01, 0.005);
+                 float   Ka              = 0.2,
+                         Kd              = 0.4,
+                         Ks              = 0.6,
+                         roughness       = 0.1 )
+surface ring3 ( float Ka = 1.0, Kd = 1.0,
+                cutoff = 0.55, ringrad = 1.0, opacity = 0.5; )
+displacement round ( float   radius = .10 )
+surface screen ( float Ka = 1, Kd = 0.75, Ks = 0.4, roughness = 0.1;
+                 color specularcolor = 1;
+                 float density = 0.25, frequency = 20; )
+surface screen_aa ( float Ka = 1, Kd = 0.75, Ks = 0.4, roughness = 0.1;
+                    color specularcolor = 1;
+                    float density = 0.25, frequency = 20;)
+surface shiny ( float Ka = 1, Kd = 0.5, Ks = 1;
+                float Kr = 0.5, roughness = 0.05, blur = 0;
+                color specularcolor = 1;
+                float samples = 1; )
+surface shinymetal ( float Ka = 1;
+                     float Ks = 1;
+                     float Kr = 1;
+                     float roughness = .1;
+                     string texturename = "";)
+light spotlight ( float intensity = 1;
+                  color lightcolor = 1;
+                  point from = point "shader" (0,0,0);
+                  point to = point "shader" (0,0,1);
+                  float coneangle = radians(30);
+                  float conedeltaangle = radians(5);
+                  float beamdistribution = 2; )
+displacement stucco ( float Km = 0.05, power = 5, frequency = 10; )
+surface wallpaper_2stripe ( float Ka = 0.5, Kd = 0.75, Ks = 0.25;
+                            float roughness = 0.1;  color specularcolor = 1;
+                            color stripecolor = color "rgb" (1,0.5,0.5);
+                            float stripewidth = 0.05;
+                            float stripespacing = 0.5; )
+surface wood2 ( float Ka = 1, Kd = .75, Ks = .4;
+                float roughness = .1;
+                color specularcolor = 1;
+                float ringscale = 15;
+                float txtscale = 1;
+                color lightwood = color (0.69, 0.44, 0.25);
+                color darkwood  = color (0.35, 0.22, 0.08);
+                float grainy = 1; )
+##TextureResources
